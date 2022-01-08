@@ -5,10 +5,13 @@ const notFound = require("./midWare/not-found");
 const route = require("./routes/route");
 require("dotenv").config();
 require("express-async-errors");
+const cors = require("cors");
 
 const port = process.env.PORT;
 const uri = process.env.URI;
+
 const app = express();
+app.use(cors());
 
 app.use(express.json());
 app.use("/api/v1/products", route);

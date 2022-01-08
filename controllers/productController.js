@@ -1,3 +1,4 @@
+// const { useParams } = require("react-router");
 const Product = require("../models/productModel");
 
 const getAllProducts = async (req, res) => {
@@ -63,4 +64,11 @@ const getAllProducts = async (req, res) => {
   res.status(200).json({ products, length: products.length });
 };
 
-module.exports = getAllProducts;
+const getOneProduct = async (req, res) => {
+  const { id: productId } = req.params;
+  const product = await Product.findOne({ _id: productId });
+  console.log(product);
+  res.status(200).json({ product });
+};
+
+module.exports = { getAllProducts, getOneProduct };
